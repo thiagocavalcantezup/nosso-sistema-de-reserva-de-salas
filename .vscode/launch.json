@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-NossoSistemaDeReservaDeSalaApplication<nosso-sistema-de-reserva-de-sala>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "br.com.zup.edu.nossosistemadereservadesala.NossoSistemaDeReservaDeSalaApplication",
+      "projectName": "nosso-sistema-de-reserva-de-sala",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
