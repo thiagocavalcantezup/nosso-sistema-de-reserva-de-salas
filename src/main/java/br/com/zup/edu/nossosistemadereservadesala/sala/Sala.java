@@ -1,7 +1,5 @@
 package br.com.zup.edu.nossosistemadereservadesala.sala;
 
-import static br.com.zup.edu.nossosistemadereservadesala.sala.StatusOcupacao.LIVRE;
-
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -34,7 +32,7 @@ public class Sala {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private StatusOcupacao status = LIVRE;
+    private StatusOcupacao status = StatusOcupacao.LIVRE;
 
     @Column(nullable = false)
     private LocalDateTime criadoEm = LocalDateTime.now();
