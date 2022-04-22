@@ -3,6 +3,7 @@ package br.com.zup.edu.nossosistemadereservadesala;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import br.com.zup.edu.nossosistemadereservadesala.sala.Sala;
 import br.com.zup.edu.nossosistemadereservadesala.sala.SalaRepository;
 
 @Component
@@ -22,7 +23,11 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void load() {
+        Sala sala1 = new Sala("Sala A1");
+        Sala sala2 = new Sala("Sala A2");
 
+        salaRepository.save(sala1);
+        salaRepository.save(sala2);
     }
 
 }
