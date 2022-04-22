@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -109,6 +110,26 @@ public class CustomExceptionHandler {
 
         ErroPadronizado erroPadronizado = new ErroPadronizado(
             codigoHttp, mensagemHttp, mensagemGeral
+        );
+
+        return erroPadronizado;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
+    @ResponseBody
+    ErroPadronizado handleObjectOptimisticLockingFailure(ObjectOptimisticLockingFailureException ex) {
+        HttpStatus httpStatus = HttpStatus.CONFLICT;
+        Integer codigoHttp = httpStatus.value();
+        String mensagemHttp = httpStatus.getReasonPhrase();
+
+        String mensagemGeral = "Houve um problema com a sua requisição.";
+
+        ErroPadronizado erroPadronizado = new ErroPadronizado(
+            codigoHttp, mensagemHttp, mensagemGeral
+        );
+        erroPadronizado.adicionarErro(
+            "O recurso que você tentou atualizar mudou de estado. Tente novamente."
         );
 
         return erroPadronizado;
