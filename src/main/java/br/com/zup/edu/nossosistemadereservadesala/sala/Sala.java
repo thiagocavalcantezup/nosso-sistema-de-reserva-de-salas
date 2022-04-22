@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.zup.edu.nossosistemadereservadesala.exceptions.SalaNaoLivreException;
+
 @Entity
 public class Sala {
 
@@ -42,8 +44,21 @@ public class Sala {
         this.nome = nome;
     }
 
+    public void reservar() {
+        if (!isLivre()) {
+            throw new SalaNaoLivreException("A sala não está livre para ser reservada.");
+        }
+
+        status = StatusOcupacao.OCUPADO;
+        atualizadoEm = LocalDateTime.now();
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public boolean isLivre() {
+        return status.equals(StatusOcupacao.LIVRE);
     }
 
 }

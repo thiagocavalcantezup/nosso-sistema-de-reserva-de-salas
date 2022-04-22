@@ -135,4 +135,22 @@ public class CustomExceptionHandler {
         return erroPadronizado;
     }
 
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(SalaNaoLivreException.class)
+    @ResponseBody
+    ErroPadronizado handleSalaNaoLivre(SalaNaoLivreException ex) {
+        HttpStatus httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
+        Integer codigoHttp = httpStatus.value();
+        String mensagemHttp = httpStatus.getReasonPhrase();
+
+        String mensagemGeral = "Houve um problema com a sua requisição.";
+
+        ErroPadronizado erroPadronizado = new ErroPadronizado(
+            codigoHttp, mensagemHttp, mensagemGeral
+        );
+        erroPadronizado.adicionarErro(ex.getMessage());
+
+        return erroPadronizado;
+    }
+
 }
