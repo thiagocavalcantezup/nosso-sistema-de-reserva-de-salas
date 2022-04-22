@@ -1,0 +1,1 @@
+{"info":{"name":"nosso-sistema-de-reserva-de-salas","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"Reservar Sala","request":{"method":"PATCH","url":{"raw":"http://localhost:8080/api/salas/1","protocol":"http","host":["localhost:8080"],"path":["api","salas","1"],"port":"8080"}}}]}
